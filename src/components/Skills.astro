@@ -1,0 +1,45 @@
+---
+const skills = [
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
+  { name: 'Astro', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/astro/astro-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'Bun', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bun/bun-original.svg' },
+  { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' }
+];
+
+// Double the skills for a smooth infinite loop
+const infiniteSkills = [...skills, ...skills, ...skills, ...skills]; // Use more items for wider screens
+---
+
+<div class="relative overflow-hidden w-full">
+  <!-- Gradient overlays that now work in dark mode -->
+  <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
+  
+  <div class="flex animate-scroll-smooth space-x-8 will-change-transform">
+    {infiniteSkills.map((skill, index) => (
+      <div key={index} class="flex-shrink-0">
+        <img src={skill.icon} alt={skill.name} class="w-10 h-10 object-contain" />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes scroll-smooth {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-smooth {
+    /* Animation speed is increased by reducing the duration */
+    animation: scroll-smooth 10s linear infinite;
+  }
+</style>

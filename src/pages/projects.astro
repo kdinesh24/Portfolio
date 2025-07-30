@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+// Import project images
+import projectPic1 from '../assets/project-1.png'; 
+import projectPic2 from '../assets/project-2.png';
+
+const projects = [
+  {
+    name: "Nexseed",
+    description: "A CLI tool that creates a Next.js app with login, signup, landing, and home pages—a ready-to-code setup with a database.",
+    image: projectPic1,
+    liveUrl: "https://nexseed-docs.vercel.app/",
+    githubUrl: "https://github.com/kdinesh24/Nexseed.git"
+  },
+  {
+    name: "Imaverter",
+    description: "A website where you can crop, convert, compress, extract color palettes, and view metadata from any image.",
+    image: projectPic2,
+    liveUrl: "https://imaverter.vercel.app/",
+    githubUrl: "https://github.com/armancurr/imaverter.git"
+  }
+];
+
+const projectCardClasses = "bg-gray-100 dark:bg-[#1a1a1a] border border-gray-200 dark:border-[#2a2a2a] rounded-2xl overflow-hidden flex flex-col group";
+const linkButtonClasses = "px-4 py-2 text-sm font-semibold rounded-lg transition-colors duration-200";
+---
+
+<Layout title="Projects – Dinesh">
+  <div class="relative w-full h-full">
+    
+    <!-- Centered Close Button -->
+    <div class="absolute -top-12 left-1/2 -translate-x-1/2 z-40">
+      <a href="/" class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 dark:bg-[#2a2a2a] text-black dark:text-white transition-all duration-300 hover:bg-gray-300 dark:hover:bg-[#3a3a3a] hover:scale-110">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+      {projects.map(project => (
+        <div class={projectCardClasses}>
+          <div class="w-full h-60 overflow-hidden">
+            <Image src={project.image} alt={project.name} class="w-full h-full object-cover"/>
+          </div>
+          <div class="p-5 flex-grow flex flex-col">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-[#CCCCCC]">{project.name}</h3>
+            <p class="mt-1 text-md text-gray-600 dark:text-[#737373] flex-grow">{project.description}</p>
+            <div class="mt-4 flex items-center gap-4">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class:list={[linkButtonClasses, "bg-gray-200 dark:bg-[#2d2d2d] text-gray-800 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-[#3a3a3a]"]}>App Live</a>
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class:list={[linkButtonClasses, "text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white"]}>GitHub</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
