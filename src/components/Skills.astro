@@ -10,23 +10,27 @@ const skills = [
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' }
 ];
 
-// Double the skills for a smooth infinite loop
-const infiniteSkills = [...skills, ...skills, ...skills, ...skills]; // Use more items for wider screens
+
+// Double the skills for a smooth, seamless infinite loop
+const infiniteSkills = [...skills, ...skills];
 ---
 
+
 <div class="relative overflow-hidden w-full">
-  <!-- Gradient overlays that now work in dark mode -->
-  <div class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
-  <div class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
-  
-  <div class="flex animate-scroll-smooth space-x-8 will-change-transform">
+  <!-- Gradient overlays for a smooth fade-in/out effect -->
+  <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-50 dark:from-[#1a1a1a] to-transparent z-10 pointer-events-none"></div>
+
+  <div class="flex animate-scroll-smooth space-x-16 will-change-transform">
     {infiniteSkills.map((skill, index) => (
-      <div key={index} class="flex-shrink-0">
+      <div key={index} class="flex-shrink-0 flex flex-col items-center justify-center gap-2">
         <img src={skill.icon} alt={skill.name} class="w-10 h-10 object-contain" />
+        <p class="text-xs text-[#737373] whitespace-nowrap">{skill.name}</p>
       </div>
     ))}
   </div>
 </div>
+
 
 <style>
   @keyframes scroll-smooth {
@@ -34,12 +38,14 @@ const infiniteSkills = [...skills, ...skills, ...skills, ...skills]; // Use more
       transform: translateX(0);
     }
     100% {
+      /* This must be -50% when the array is doubled to ensure a seamless loop */
       transform: translateX(-50%);
     }
   }
 
+
   .animate-scroll-smooth {
-    /* Animation speed is increased by reducing the duration */
+    /* Animation duration increased to make text readable */
     animation: scroll-smooth 10s linear infinite;
   }
 </style>
