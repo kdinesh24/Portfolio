@@ -33,10 +33,11 @@ const { title } = Astro.props;
   <body
     class="bg-gray-100 dark:bg-[#0c0c0c] text-zinc-800 dark:text-zinc-200"
   >
-    <div class="h-screen p-4 sm:p-6 flex items-center justify-center">
+    <!-- Use min-h-screen for mobile and h-screen for desktop -->
+    <div class="min-h-screen lg:h-screen p-4 sm:p-6 flex items-center justify-center">
+      <!-- Let the container be full height of its parent -->
       <div
-        style="width: 99vw; height: calc(100vh - 2rem);"
-        class="max-w-none bg-white dark:bg-[#0c0c0c] border border-gray-200 dark:border-[#2a2a2a] rounded-3xl shadow-lg p-3 md:p-4 overflow-hidden"
+        class="w-full max-w-[90rem] h-full bg-white dark:bg-[#0c0c0c] border border-gray-200 dark:border-[#2a2a2a] rounded-3xl shadow-lg p-3 md:p-4 overflow-hidden"
       >
         <slot />
       </div>
